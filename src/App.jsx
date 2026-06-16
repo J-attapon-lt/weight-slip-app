@@ -11,24 +11,114 @@ function App() {
         {`
           @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap');
 
-          html, body, #root {
+          html,
+          body,
+          #root {
             margin: 0;
             min-height: 100%;
+            background: #f3f4f6;
           }
 
-          .font-sarabun {
+          .app {
+            min-height: 100vh;
+            padding: 32px;
             font-family: 'TH Sarabun New', 'Sarabun', sans-serif;
           }
 
-          .weight-slip {
-            width: 240mm;
-            height: 148mm;
+          .layout {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            gap: 32px;
+            align-items: flex-start;
+          }
+
+          .control-panel {
+            width: 50%;
             background: white;
-            border: 1px solid #000;
-            color: #000;
+            border-radius: 8px;
+            box-shadow: 0 1px 8px rgba(0,0,0,0.12);
+            padding: 28px;
+            display: flex;
+            justify-content: flex-end;
+          }
+
+          .print-button {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 0;
+            border-radius: 6px;
+            background: #2563eb;
+            color: white;
+            padding: 12px 28px;
             font-size: 18px;
-            line-height: 1.25;
-            box-sizing: border-box;
+            font-weight: 600;
+            font-family: Arial, sans-serif;
+            cursor: pointer;
+          }
+
+          .preview-wrap {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+          }
+
+          .slip {
+            position: relative;
+            width: 595pt;
+            height: 367pt;
+            background: white;
+            color: black;
+            box-shadow: 0 1px 6px rgba(0,0,0,0.28);
+            overflow: hidden;
+            font-family: 'TH Sarabun New', 'Sarabun', sans-serif;
+          }
+
+          .txt {
+            position: absolute;
+            white-space: nowrap;
+            font-size: 18pt;
+            line-height: 1;
+            font-weight: 400;
+          }
+
+          .bold {
+            font-weight: 700;
+          }
+
+          .title {
+            position: absolute;
+            left: 0;
+            top: 10pt;
+            width: 595pt;
+            text-align: center;
+            font-size: 22pt;
+            line-height: 1;
+            font-weight: 700;
+          }
+
+          .address {
+            position: absolute;
+            left: 0;
+            top: 39pt;
+            width: 595pt;
+            text-align: center;
+            font-size: 16pt;
+            line-height: 1;
+            font-weight: 400;
+          }
+
+          .line-h {
+            position: absolute;
+            height: 0;
+            border-top: 1pt solid black;
+          }
+
+          .line-v {
+            position: absolute;
+            width: 0;
+            border-left: 1pt solid black;
           }
 
           @media print {
@@ -47,171 +137,126 @@ function App() {
               background: white !important;
             }
 
-            .no-print {
+            .app {
+              width: 297mm;
+              height: 210mm;
+              padding: 0;
+              background: white !important;
+            }
+
+            .layout {
+              display: block;
+              width: 297mm;
+              height: 210mm;
+              max-width: none;
+              margin: 0;
+            }
+
+            .control-panel {
               display: none !important;
             }
 
-            .screen-layout {
-              display: block !important;
-              width: 297mm !important;
-              min-height: 210mm !important;
-              padding: 0 !important;
-              background: white !important;
+            .preview-wrap {
+              width: 297mm;
+              height: 210mm;
+              display: flex;
+              align-items: flex-start;
+              justify-content: center;
+              padding-top: 20mm;
+              box-sizing: border-box;
             }
 
-            .print-page {
-              width: 297mm !important;
-              min-height: 210mm !important;
-              display: flex !important;
-              justify-content: center !important;
-              align-items: flex-start !important;
-              padding-top: 24mm !important;
-              margin: 0 !important;
-              background: white !important;
-            }
-
-            .weight-slip {
-              width: 240mm !important;
-              height: 148mm !important;
+            .slip {
               box-shadow: none !important;
             }
           }
         `}
       </style>
 
-      <div className="min-h-screen bg-gray-100 p-8 font-sarabun screen-layout">
-        <div className="max-w-7xl mx-auto flex gap-8 screen-layout">
-          <div className="w-full lg:w-1/2 no-print">
-            <div className="bg-white rounded-lg shadow p-6 flex justify-end">
-              <button
-                type="button"
-                onClick={handlePrint}
-                className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md font-medium transition-colors"
-              >
-                <Printer size={22} />
-                พิมพ์ใบชั่ง
-              </button>
-            </div>
+      <div className="app">
+        <div className="layout">
+          <div className="control-panel">
+            <button type="button" onClick={handlePrint} className="print-button">
+              <Printer size={22} />
+              พิมพ์ใบชั่ง
+            </button>
           </div>
 
-          <div className="w-full lg:w-1/2 flex justify-center print-page">
-            <div className="weight-slip shadow-lg font-sarabun">
-              <div className="pt-[8mm] px-[8mm] pb-[2mm]">
-                <h1 className="text-center font-bold text-[25px] leading-none mb-[4px]">
-                  บริษัท แอล.ที. การยาง จำกัด
-                </h1>
-
-                <p className="text-center text-[16px] leading-none mb-[7mm]">
-                  541 ม.3 จันดี ฉวาง นครศรีธรรมราช - 80250&nbsp;&nbsp;
-                  โทร 075-445-930&nbsp;&nbsp;
-                  เลขประจำตัวผู้เสียภาษี 0805523000071
-                </p>
-
-                <div className="grid grid-cols-12 text-[18px] leading-[1.35]">
-                  <div className="col-span-5">
-                    <div className="font-bold">เลขที่ใบชั่ง</div>
-                    <div className="font-bold">ชื่อลูกค้า</div>
-                    <div className="font-bold">สินค้า</div>
-                    <div className="font-bold">ประเภทรถ</div>
-                  </div>
-
-                  <div className="col-span-2 text-center pt-[2px]">
-                    ใบชั่งน้ำหนัก
-                  </div>
-
-                  <div className="col-span-2"></div>
-
-                  <div className="col-span-3">
-                    <div>
-                      <span className="font-bold inline-block w-[27mm]">วันที่</span>
-                    </div>
-                    <div>
-                      <span className="font-bold inline-block w-[27mm]">พนักงานชั่ง</span>
-                    </div>
-                    <div>
-                      <span className="font-bold inline-block w-[27mm]">ราคา</span>
-                      <span>0.00 บาท</span>
-                    </div>
-                  </div>
-
-                  <div className="col-span-5"></div>
-                  <div className="col-span-2 font-bold text-center mt-[2mm]">
-                    หมายเหตุ
-                  </div>
-                  <div className="col-span-5"></div>
-                </div>
+          <div className="preview-wrap">
+            <div className="slip">
+              <div className="title">บริษัท แอล.ที. การยาง จำกัด</div>
+              <div className="address">
+                541 ม.3 จันดี ฉวาง นครศรีธรรมราช - 80250&nbsp;&nbsp;
+                โทร 075-445-930&nbsp;&nbsp;
+                เลขประจำตัวผู้เสียภาษี 0805523000071
               </div>
 
-              <div className="px-[8mm]">
-                <table className="w-full border border-black border-collapse text-[18px] leading-[1.25]">
-                  <tbody>
-                    <tr className="h-[10mm]">
-                      <td className="border border-black w-[24mm] text-center font-bold">รายการ</td>
-                      <td className="border border-black w-[75mm] text-center font-bold">ทะเบียนรถ</td>
-                      <td className="border border-black w-[32mm] text-center font-bold">วันที่</td>
-                      <td className="border border-black w-[42mm] text-center font-bold">เวลา</td>
-                      <td className="border border-black text-center font-bold">น้ำหนัก</td>
-                    </tr>
+              {/* Header text */}
+              <div className="txt bold" style={{ left: '20pt', top: '67pt' }}>เลขที่ใบชั่ง</div>
+              <div className="txt" style={{ left: '267pt', top: '67pt' }}>ใบชั่งน้ำหนัก</div>
+              <div className="txt bold" style={{ left: '361pt', top: '67pt' }}>วันที่</div>
 
-                    <tr className="h-[10mm]">
-                      <td className="border border-black text-center font-bold">เข้า</td>
-                      <td className="border border-black"></td>
-                      <td className="border border-black"></td>
-                      <td className="border border-black"></td>
-                      <td className="border border-black"></td>
-                    </tr>
+              <div className="txt bold" style={{ left: '20pt', top: '89pt' }}>ชื่อลูกค้า</div>
+              <div className="txt bold" style={{ left: '361pt', top: '89pt' }}>พนักงานชั่ง</div>
 
-                    <tr className="h-[10mm]">
-                      <td className="border border-black text-center font-bold">ออก</td>
-                      <td className="border border-black"></td>
-                      <td className="border border-black"></td>
-                      <td className="border border-black"></td>
-                      <td className="border border-black"></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+              <div className="txt bold" style={{ left: '20pt', top: '112pt' }}>สินค้า</div>
+              <div className="txt bold" style={{ left: '361pt', top: '112pt' }}>ราคา</div>
+              <div className="txt" style={{ left: '426pt', top: '112pt' }}>0.00 บาท</div>
 
-              <div className="px-[8mm] flex">
-                <div className="w-[55%] pt-[43mm] pr-[4mm]">
-                  <div className="flex justify-center gap-[12mm]">
-                    <div className="w-[58mm] text-center">
-                      <div className="border-b border-black h-[1px] mb-[3mm]"></div>
-                      <div className="text-[18px]">พนักงานชั่ง</div>
-                    </div>
+              <div className="txt bold" style={{ left: '20pt', top: '134pt' }}>ประเภทรถ</div>
+              <div className="txt bold" style={{ left: '267pt', top: '134pt' }}>หมายเหตุ</div>
 
-                    <div className="w-[58mm] text-center">
-                      <div className="border-b border-black h-[1px] mb-[3mm]"></div>
-                      <div className="text-[18px]">พนักงานขับรถ</div>
-                    </div>
-                  </div>
-                </div>
+              {/* Main table horizontal lines */}
+              <div className="line-h" style={{ left: '20pt', top: '155pt', width: '555pt' }} />
+              <div className="line-h" style={{ left: '20pt', top: '179pt', width: '555pt' }} />
+              <div className="line-h" style={{ left: '20pt', top: '225pt', width: '555pt' }} />
 
-                <div className="w-[45%] border-l border-r border-b border-black h-[52mm]">
-                  <div className="grid grid-cols-2 text-[18px] leading-[1.48] pt-[3mm] px-[2mm]">
-                    <div className="text-right font-bold pr-[2mm]">นน. สุทธิ</div>
-                    <div></div>
+              {/* Main table vertical lines */}
+              <div className="line-v" style={{ left: '20pt', top: '155pt', height: '70pt' }} />
+              <div className="line-v" style={{ left: '77pt', top: '155pt', height: '70pt' }} />
+              <div className="line-v" style={{ left: '252pt', top: '155pt', height: '70pt' }} />
+              <div className="line-v" style={{ left: '326pt', top: '155pt', height: '203pt' }} />
+              <div className="line-v" style={{ left: '421pt', top: '155pt', height: '203pt' }} />
+              <div className="line-v" style={{ left: '575pt', top: '155pt', height: '203pt' }} />
 
-                    <div className="text-right pr-[2mm]">ความชื้น/สิ่งเจือปน</div>
-                    <div className="text-right">0</div>
+              {/* Table labels */}
+              <div className="txt bold" style={{ left: '30pt', top: '158pt' }}>รายการ</div>
+              <div className="txt bold" style={{ left: '138pt', top: '158pt' }}>ทะเบียนรถ</div>
+              <div className="txt bold" style={{ left: '278pt', top: '158pt' }}>วันที่</div>
+              <div className="txt bold" style={{ left: '362pt', top: '158pt' }}>เวลา</div>
+              <div className="txt bold" style={{ left: '480pt', top: '158pt' }}>น้ำหนัก</div>
 
-                    <div className="text-right font-bold pr-[2mm]">นน. คงเหลือ</div>
-                    <div></div>
+              <div className="txt bold" style={{ left: '40pt', top: '182pt' }}>เข้า</div>
+              <div className="txt bold" style={{ left: '38pt', top: '204pt' }}>ออก</div>
 
-                    <div className="text-right pr-[2mm]">จำนวนเงิน</div>
-                    <div className="text-right">0.00</div>
+              {/* Right summary box horizontal lines */}
+              <div className="line-h" style={{ left: '326pt', top: '358pt', width: '249pt' }} />
 
-                    <div className="text-right pr-[2mm]">เงินหัก</div>
-                    <div className="text-right">0.00</div>
+              {/* Summary text */}
+              <div className="txt bold" style={{ left: '374pt', top: '228pt' }}>นน. สุทธิ</div>
 
-                    <div className="text-right font-bold pr-[2mm]">เงินคงเหลือ</div>
-                    <div className="text-right font-bold">0.00</div>
-                  </div>
-                </div>
-              </div>
+              <div className="txt" style={{ left: '329pt', top: '250pt' }}>ความชื้น/สิ่งเจือปน</div>
+              <div className="txt" style={{ left: '563pt', top: '250pt' }}>0</div>
+
+              <div className="txt bold" style={{ left: '357pt', top: '272pt' }}>นน. คงเหลือ</div>
+
+              <div className="txt" style={{ left: '366pt', top: '294pt' }}>จำนวนเงิน</div>
+              <div className="txt" style={{ left: '547pt', top: '294pt' }}>0.00</div>
+
+              <div className="txt" style={{ left: '385pt', top: '316pt' }}>เงินหัก</div>
+              <div className="txt" style={{ left: '547pt', top: '316pt' }}>0.00</div>
+
+              <div className="txt bold" style={{ left: '362pt', top: '337pt' }}>เงินคงเหลือ</div>
+              <div className="txt bold" style={{ left: '547pt', top: '337pt' }}>0.00</div>
+
+              {/* Signature lines */}
+              <div className="line-h" style={{ left: '30pt', top: '333pt', width: '133pt' }} />
+              <div className="line-h" style={{ left: '183pt', top: '333pt', width: '133pt' }} />
+
+              <div className="txt" style={{ left: '70pt', top: '337pt' }}>พนักงานชั่ง</div>
+              <div className="txt" style={{ left: '215pt', top: '337pt' }}>พนักงานขับรถ</div>
             </div>
           </div>
-
         </div>
       </div>
     </>

@@ -359,13 +359,13 @@ function App() {
                 <div className="txt bold" style={{ left: '480pt', top: '158pt' }}>น้ำหนัก</div>
 
                 <div className="txt bold" style={{ left: '40pt', top: '182pt' }}>เข้า</div>
-                <div className="value" style={{ center: '92pt', top: '182pt' }}>{form.plateIn}</div>
+                <div className="value" style={{ left: '92pt', top: '182pt' }}>{form.plateIn}</div>
                 <div className="value" style={{ left: '260pt', top: '182pt' }}>{form.dateIn}</div>
                 <div className="value" style={{ left: '345pt', top: '182pt' }}>{form.timeIn}</div>
                 <div className="value" style={{ left: '515pt', top: '182pt' }}>{form.weightIn}</div>
 
                 <div className="txt bold" style={{ left: '38pt', top: '204pt' }}>ออก</div>
-                <div className="value" style={{ center: '92pt', top: '204pt' }}>{form.plateOut}</div>
+                <div className="value" style={{ left: '92pt', top: '204pt' }}>{form.plateOut}</div>
                 <div className="value" style={{ left: '260pt', top: '204pt' }}>{form.dateOut}</div>
                 <div className="value" style={{ left: '345pt', top: '204pt' }}>{form.timeOut}</div>
                 <div className="value" style={{ left: '515pt', top: '204pt' }}>{form.weightOut}</div>

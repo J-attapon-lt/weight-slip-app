@@ -29,6 +29,7 @@ function App() {
 
   const handleChange = (e) => {
     const { name, value } = e.target
+
     setForm((prev) => ({
       ...prev,
       [name]: value,
@@ -65,7 +66,7 @@ function App() {
           }
 
           .layout {
-            max-width: 1400px;
+            max-width: 1500px;
             margin: 0 auto;
             display: flex;
             gap: 32px;
@@ -73,28 +74,40 @@ function App() {
           }
 
           .control-panel {
-            width: 42%;
+            width: 38%;
             background: white;
             border-radius: 8px;
-            box-shadow: 0 1px 8px rgba(0,0,0,0.12);
+            box-shadow: 0 1px 8px rgba(0, 0, 0, 0.12);
             padding: 24px;
           }
 
           .preview-wrap {
-            width: 58%;
+            width: 62%;
             display: flex;
             justify-content: center;
+            overflow: auto;
           }
 
           .slip {
             position: relative;
-            width: 595pt;
-            height: 367pt;
+            width: 9.5in;
+            height: 5.5in;
             background: white;
             color: black;
-            box-shadow: 0 1px 6px rgba(0,0,0,0.28);
+            box-shadow: 0 1px 6px rgba(0, 0, 0, 0.28);
             overflow: hidden;
             font-family: 'TH Sarabun New', 'Sarabun', sans-serif;
+            flex-shrink: 0;
+          }
+
+          .slip-content {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 595pt;
+            height: 367pt;
+            transform-origin: top left;
+            transform: scale(1.14958, 1.07902);
           }
 
           .txt {
@@ -153,33 +166,35 @@ function App() {
 
           @media print {
             @page {
-              size: A4 landscape;
+              size: 9.5in 5.5in;
               margin: 0;
             }
 
             html,
             body,
             #root {
-              width: 297mm;
-              height: 210mm;
+              width: 9.5in;
+              height: 5.5in;
               margin: 0;
               padding: 0;
               background: white !important;
             }
 
             .app {
-              width: 297mm;
-              height: 210mm;
+              width: 9.5in;
+              height: 5.5in;
+              min-height: 5.5in;
               padding: 0;
               background: white !important;
             }
 
             .layout {
               display: block;
-              width: 297mm;
-              height: 210mm;
+              width: 9.5in;
+              height: 5.5in;
               max-width: none;
               margin: 0;
+              padding: 0;
             }
 
             .control-panel {
@@ -187,16 +202,17 @@ function App() {
             }
 
             .preview-wrap {
-              width: 297mm;
-              height: 210mm;
-              display: flex;
-              align-items: flex-start;
-              justify-content: center;
-              padding-top: 20mm;
-              box-sizing: border-box;
+              width: 9.5in;
+              height: 5.5in;
+              display: block;
+              padding: 0;
+              margin: 0;
+              overflow: hidden;
             }
 
             .slip {
+              width: 9.5in !important;
+              height: 5.5in !important;
               box-shadow: none !important;
             }
           }
@@ -290,93 +306,96 @@ function App() {
 
           <div className="preview-wrap">
             <div className="slip">
-              <div className="title">บริษัท แอล.ที. การยาง จำกัด</div>
-              <div className="address">
-                541 ม.3 จันดี ฉวาง นครศรีธรรมราช - 80250&nbsp;&nbsp;
-                โทร 075-445-930&nbsp;&nbsp;
-                เลขประจำตัวผู้เสียภาษี 0805523000071
+              <div className="slip-content">
+                <div className="title">บริษัท แอล.ที. การยาง จำกัด</div>
+
+                <div className="address">
+                  541 ม.3 จันดี ฉวาง นครศรีธรรมราช - 80250&nbsp;&nbsp;
+                  โทร 075-445-930&nbsp;&nbsp;
+                  เลขประจำตัวผู้เสียภาษี 0805523000071
+                </div>
+
+                <div className="txt bold" style={{ left: '20pt', top: '67pt' }}>เลขที่ใบชั่ง</div>
+                <div className="value" style={{ left: '105pt', top: '67pt' }}>{form.slipNo}</div>
+
+                <div className="txt" style={{ left: '267pt', top: '67pt' }}>ใบชั่งน้ำหนัก</div>
+
+                <div className="txt bold" style={{ left: '361pt', top: '67pt' }}>วันที่</div>
+                <div className="value" style={{ left: '410pt', top: '67pt' }}>{form.weightDate}</div>
+
+                <div className="txt bold" style={{ left: '20pt', top: '89pt' }}>ชื่อลูกค้า</div>
+                <div className="value" style={{ left: '105pt', top: '89pt' }}>{form.customerName}</div>
+
+                <div className="txt bold" style={{ left: '361pt', top: '89pt' }}>พนักงานชั่ง</div>
+                <div className="value" style={{ left: '460pt', top: '89pt' }}>{form.staffName}</div>
+
+                <div className="txt bold" style={{ left: '20pt', top: '112pt' }}>สินค้า</div>
+                <div className="value" style={{ left: '105pt', top: '112pt' }}>{form.product}</div>
+
+                <div className="txt bold" style={{ left: '361pt', top: '112pt' }}>ราคา</div>
+                <div className="value" style={{ left: '426pt', top: '112pt' }}>{form.price} บาท</div>
+
+                <div className="txt bold" style={{ left: '20pt', top: '134pt' }}>ประเภทรถ</div>
+                <div className="value" style={{ left: '105pt', top: '134pt' }}>{form.carType}</div>
+
+                <div className="txt bold" style={{ left: '267pt', top: '134pt' }}>หมายเหตุ</div>
+                <div className="value" style={{ left: '350pt', top: '134pt' }}>{form.remark}</div>
+
+                <div className="line-h" style={{ left: '20pt', top: '155pt', width: '555pt' }} />
+                <div className="line-h" style={{ left: '20pt', top: '179pt', width: '555pt' }} />
+                <div className="line-h" style={{ left: '20pt', top: '225pt', width: '555pt' }} />
+
+                <div className="line-v" style={{ left: '20pt', top: '155pt', height: '70pt' }} />
+                <div className="line-v" style={{ left: '77pt', top: '155pt', height: '70pt' }} />
+                <div className="line-v" style={{ left: '252pt', top: '155pt', height: '70pt' }} />
+                <div className="line-v" style={{ left: '326pt', top: '155pt', height: '203pt' }} />
+                <div className="line-v" style={{ left: '421pt', top: '155pt', height: '203pt' }} />
+                <div className="line-v" style={{ left: '575pt', top: '155pt', height: '203pt' }} />
+
+                <div className="txt bold" style={{ left: '30pt', top: '158pt' }}>รายการ</div>
+                <div className="txt bold" style={{ left: '138pt', top: '158pt' }}>ทะเบียนรถ</div>
+                <div className="txt bold" style={{ left: '278pt', top: '158pt' }}>วันที่</div>
+                <div className="txt bold" style={{ left: '362pt', top: '158pt' }}>เวลา</div>
+                <div className="txt bold" style={{ left: '480pt', top: '158pt' }}>น้ำหนัก</div>
+
+                <div className="txt bold" style={{ left: '40pt', top: '182pt' }}>เข้า</div>
+                <div className="value" style={{ left: '92pt', top: '182pt' }}>{form.plateIn}</div>
+                <div className="value" style={{ left: '260pt', top: '182pt' }}>{form.dateIn}</div>
+                <div className="value" style={{ left: '345pt', top: '182pt' }}>{form.timeIn}</div>
+                <div className="value" style={{ left: '515pt', top: '182pt' }}>{form.weightIn}</div>
+
+                <div className="txt bold" style={{ left: '38pt', top: '204pt' }}>ออก</div>
+                <div className="value" style={{ left: '92pt', top: '204pt' }}>{form.plateOut}</div>
+                <div className="value" style={{ left: '260pt', top: '204pt' }}>{form.dateOut}</div>
+                <div className="value" style={{ left: '345pt', top: '204pt' }}>{form.timeOut}</div>
+                <div className="value" style={{ left: '515pt', top: '204pt' }}>{form.weightOut}</div>
+
+                <div className="line-h" style={{ left: '326pt', top: '358pt', width: '249pt' }} />
+
+                <div className="txt bold" style={{ left: '374pt', top: '228pt' }}>นน. สุทธิ</div>
+                <div className="value" style={{ left: '520pt', top: '228pt' }}>{form.netWeight}</div>
+
+                <div className="txt" style={{ left: '329pt', top: '250pt' }}>ความชื้น/สิ่งเจือปน</div>
+                <div className="value" style={{ left: '563pt', top: '250pt' }}>{form.moisture}</div>
+
+                <div className="txt bold" style={{ left: '357pt', top: '272pt' }}>นน. คงเหลือ</div>
+                <div className="value" style={{ left: '520pt', top: '272pt' }}>{form.remainWeight}</div>
+
+                <div className="txt" style={{ left: '366pt', top: '294pt' }}>จำนวนเงิน</div>
+                <div className="value" style={{ left: '547pt', top: '294pt' }}>{form.amount}</div>
+
+                <div className="txt" style={{ left: '385pt', top: '316pt' }}>เงินหัก</div>
+                <div className="value" style={{ left: '547pt', top: '316pt' }}>{form.deduct}</div>
+
+                <div className="txt bold" style={{ left: '362pt', top: '337pt' }}>เงินคงเหลือ</div>
+                <div className="value bold" style={{ left: '547pt', top: '337pt' }}>{form.balance}</div>
+
+                <div className="line-h" style={{ left: '30pt', top: '333pt', width: '133pt' }} />
+                <div className="line-h" style={{ left: '183pt', top: '333pt', width: '133pt' }} />
+
+                <div className="txt" style={{ left: '70pt', top: '337pt' }}>พนักงานชั่ง</div>
+                <div className="txt" style={{ left: '215pt', top: '337pt' }}>พนักงานขับรถ</div>
               </div>
-
-              <div className="txt bold" style={{ left: '20pt', top: '67pt' }}>เลขที่ใบชั่ง</div>
-              <div className="value" style={{ left: '105pt', top: '67pt' }}>{form.slipNo}</div>
-
-              <div className="txt" style={{ left: '267pt', top: '67pt' }}>ใบชั่งน้ำหนัก</div>
-
-              <div className="txt bold" style={{ left: '361pt', top: '67pt' }}>วันที่</div>
-              <div className="value" style={{ left: '410pt', top: '67pt' }}>{form.weightDate}</div>
-
-              <div className="txt bold" style={{ left: '20pt', top: '89pt' }}>ชื่อลูกค้า</div>
-              <div className="value" style={{ left: '105pt', top: '89pt' }}>{form.customerName}</div>
-
-              <div className="txt bold" style={{ left: '361pt', top: '89pt' }}>พนักงานชั่ง</div>
-              <div className="value" style={{ left: '460pt', top: '89pt' }}>{form.staffName}</div>
-
-              <div className="txt bold" style={{ left: '20pt', top: '112pt' }}>สินค้า</div>
-              <div className="value" style={{ left: '105pt', top: '112pt' }}>{form.product}</div>
-
-              <div className="txt bold" style={{ left: '361pt', top: '112pt' }}>ราคา</div>
-              <div className="value" style={{ left: '426pt', top: '112pt' }}>{form.price} บาท</div>
-
-              <div className="txt bold" style={{ left: '20pt', top: '134pt' }}>ประเภทรถ</div>
-              <div className="value" style={{ left: '105pt', top: '134pt' }}>{form.carType}</div>
-
-              <div className="txt bold" style={{ left: '267pt', top: '134pt' }}>หมายเหตุ</div>
-              <div className="value" style={{ left: '350pt', top: '134pt' }}>{form.remark}</div>
-
-              <div className="line-h" style={{ left: '20pt', top: '155pt', width: '555pt' }} />
-              <div className="line-h" style={{ left: '20pt', top: '179pt', width: '555pt' }} />
-              <div className="line-h" style={{ left: '20pt', top: '225pt', width: '555pt' }} />
-
-              <div className="line-v" style={{ left: '20pt', top: '155pt', height: '70pt' }} />
-              <div className="line-v" style={{ left: '77pt', top: '155pt', height: '70pt' }} />
-              <div className="line-v" style={{ left: '252pt', top: '155pt', height: '70pt' }} />
-              <div className="line-v" style={{ left: '326pt', top: '155pt', height: '203pt' }} />
-              <div className="line-v" style={{ left: '421pt', top: '155pt', height: '203pt' }} />
-              <div className="line-v" style={{ left: '575pt', top: '155pt', height: '203pt' }} />
-
-              <div className="txt bold" style={{ left: '30pt', top: '158pt' }}>รายการ</div>
-              <div className="txt bold" style={{ left: '138pt', top: '158pt' }}>ทะเบียนรถ</div>
-              <div className="txt bold" style={{ left: '278pt', top: '158pt' }}>วันที่</div>
-              <div className="txt bold" style={{ left: '362pt', top: '158pt' }}>เวลา</div>
-              <div className="txt bold" style={{ left: '480pt', top: '158pt' }}>น้ำหนัก</div>
-
-              <div className="txt bold" style={{ left: '40pt', top: '182pt' }}>เข้า</div>
-              <div className="value" style={{ left: '92pt', top: '182pt' }}>{form.plateIn}</div>
-              <div className="value" style={{ left: '260pt', top: '182pt' }}>{form.dateIn}</div>
-              <div className="value" style={{ left: '345pt', top: '182pt' }}>{form.timeIn}</div>
-              <div className="value" style={{ left: '515pt', top: '182pt' }}>{form.weightIn}</div>
-
-              <div className="txt bold" style={{ left: '38pt', top: '204pt' }}>ออก</div>
-              <div className="value" style={{ left: '92pt', top: '204pt' }}>{form.plateOut}</div>
-              <div className="value" style={{ left: '260pt', top: '204pt' }}>{form.dateOut}</div>
-              <div className="value" style={{ left: '345pt', top: '204pt' }}>{form.timeOut}</div>
-              <div className="value" style={{ left: '515pt', top: '204pt' }}>{form.weightOut}</div>
-
-              <div className="line-h" style={{ left: '326pt', top: '358pt', width: '249pt' }} />
-
-              <div className="txt bold" style={{ left: '374pt', top: '228pt' }}>นน. สุทธิ</div>
-              <div className="value" style={{ left: '520pt', top: '228pt' }}>{form.netWeight}</div>
-
-              <div className="txt" style={{ left: '329pt', top: '250pt' }}>ความชื้น/สิ่งเจือปน</div>
-              <div className="value" style={{ left: '563pt', top: '250pt' }}>{form.moisture}</div>
-
-              <div className="txt bold" style={{ left: '357pt', top: '272pt' }}>นน. คงเหลือ</div>
-              <div className="value" style={{ left: '520pt', top: '272pt' }}>{form.remainWeight}</div>
-
-              <div className="txt" style={{ left: '366pt', top: '294pt' }}>จำนวนเงิน</div>
-              <div className="value" style={{ left: '547pt', top: '294pt' }}>{form.amount}</div>
-
-              <div className="txt" style={{ left: '385pt', top: '316pt' }}>เงินหัก</div>
-              <div className="value" style={{ left: '547pt', top: '316pt' }}>{form.deduct}</div>
-
-              <div className="txt bold" style={{ left: '362pt', top: '337pt' }}>เงินคงเหลือ</div>
-              <div className="value bold" style={{ left: '547pt', top: '337pt' }}>{form.balance}</div>
-
-              <div className="line-h" style={{ left: '30pt', top: '333pt', width: '133pt' }} />
-              <div className="line-h" style={{ left: '183pt', top: '333pt', width: '133pt' }} />
-
-              <div className="txt" style={{ left: '70pt', top: '337pt' }}>พนักงานชั่ง</div>
-              <div className="txt" style={{ left: '215pt', top: '337pt' }}>พนักงานขับรถ</div>
             </div>
           </div>
         </div>

@@ -15,111 +15,185 @@ function App() {
   return (
     <>
       <style>
-        {`
-          @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap');
+  {`
+    @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap');
 
-          .font-sarabun {
-            font-family: 'TH Sarabun New', 'Sarabun', sans-serif;
-          }
+    .font-sarabun {
+      font-family: 'TH Sarabun New', 'Sarabun', sans-serif;
+    }
 
-          @media print {
-            @page {
-              size: A4 landscape;
-              margin: 8mm;
-            }
+    .weight-slip {
+      width: 240mm;
+      min-height: 148mm;
+      background: white;
+      border: 1px solid #000;
+      color: #000;
+      font-size: 18px;
+      line-height: 1.25;
+    }
 
-            body {
-              margin: 0;
-              background: white;
-            }
+    .thin-border {
+      border-color: #000;
+    }
 
-            .no-print {
-              display: none !important;
-            }
+    @media print {
+      @page {
+        size: A4 landscape;
+        margin: 0;
+      }
 
-            .print-area-wrapper {
-              width: 100% !important;
-              display: block !important;
-              margin: 0 !important;
-            }
+      html,
+      body,
+      #root {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        min-height: 100%;
+        background: white !important;
+      }
 
-            .print-area {
-              width: 100% !important;
-              max-width: none !important;
-              box-shadow: none !important;
-            }
-          }
-        `}
-      </style>
+      .no-print {
+        display: none !important;
+      }
 
-      <div className="min-h-screen bg-gray-100 p-4 md:p-8 font-sarabun print:p-0 print:bg-white">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 print:block print:max-w-none">
-          
-          {/* ฝั่งฟอร์ม */}
-          <div className="w-full lg:w-1/2 no-print">
-            <form className="bg-white p-6 rounded-lg shadow">
-              {/* ใส่ฟอร์มของคุณตรงนี้ */}
+      .print-page {
+        width: 297mm !important;
+        min-height: 210mm !important;
+        padding-top: 18mm !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: flex-start !important;
+        background: white !important;
+      }
 
-              <div className="pt-4 flex justify-end gap-4">
-                <button
-                  type="button"
-                  onClick={handlePrint}
-                  className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md font-medium transition-colors font-sans"
-                >
-                  <Printer size={20} /> พิมพ์ใบชั่ง
-                </button>
-              </div>
-            </form>
+      .weight-slip {
+        width: 240mm !important;
+        min-height: 148mm !important;
+        box-shadow: none !important;
+        border: 1px solid #000 !important;
+      }
+    }
+  `}
+</style>
+
+      <div className="w-full lg:w-1/2 flex justify-center print-page print:w-full print:m-0">
+  <div className="weight-slip shadow-lg print:shadow-none flex flex-col font-sarabun">
+    
+    {/* Header */}
+    <div className="pt-[8mm] px-[8mm] pb-[2mm]">
+      <h1 className="text-center font-bold text-[25px] leading-none mb-[4px]">
+        บริษัท แอล.ที. การยาง จำกัด
+      </h1>
+
+      <p className="text-center text-[16px] leading-none mb-[7mm]">
+        541 ม.3 จันดี ฉวาง นครศรีธรรมราช - 80250&nbsp;&nbsp;
+        โทร 075-445-930&nbsp;&nbsp;
+        เลขประจำตัวผู้เสียภาษี 0805523000071
+      </p>
+
+      <div className="grid grid-cols-12 text-[18px] leading-[1.35]">
+        <div className="col-span-5">
+          <div className="font-bold">เลขที่ใบชั่ง</div>
+          <div className="font-bold">ชื่อลูกค้า</div>
+          <div className="font-bold">สินค้า</div>
+          <div className="font-bold">ประเภทรถ</div>
+        </div>
+
+        <div className="col-span-2 text-center pt-[2px]">
+          ใบชั่งน้ำหนัก
+        </div>
+
+        <div className="col-span-2"></div>
+
+        <div className="col-span-3">
+          <div>
+            <span className="font-bold inline-block w-[26mm]">วันที่</span>
+          </div>
+          <div>
+            <span className="font-bold inline-block w-[26mm]">พนักงานชั่ง</span>
+          </div>
+          <div>
+            <span className="font-bold inline-block w-[26mm]">ราคา</span>
+            <span>0.00 บาท</span>
+          </div>
+        </div>
+
+        <div className="col-span-5"></div>
+        <div className="col-span-2 font-bold text-center mt-[2mm]">หมายเหตุ</div>
+        <div className="col-span-5"></div>
+      </div>
+    </div>
+
+    {/* Main table */}
+    <div className="px-[8mm]">
+      <table className="w-full border border-black border-collapse text-[18px] leading-[1.25]">
+        <tbody>
+          <tr className="h-[10mm]">
+            <td className="border border-black w-[24mm] text-center font-bold">รายการ</td>
+            <td className="border border-black w-[75mm] text-center font-bold">ทะเบียนรถ</td>
+            <td className="border border-black w-[32mm] text-center font-bold">วันที่</td>
+            <td className="border border-black w-[42mm] text-center font-bold">เวลา</td>
+            <td className="border border-black text-center font-bold">น้ำหนัก</td>
+          </tr>
+
+          <tr className="h-[10mm]">
+            <td className="border border-black text-center font-bold">เข้า</td>
+            <td className="border border-black"></td>
+            <td className="border border-black"></td>
+            <td className="border border-black"></td>
+            <td className="border border-black"></td>
+          </tr>
+
+          <tr className="h-[10mm]">
+            <td className="border border-black text-center font-bold">ออก</td>
+            <td className="border border-black"></td>
+            <td className="border border-black"></td>
+            <td className="border border-black"></td>
+            <td className="border border-black"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    {/* Bottom area */}
+    <div className="px-[8mm] flex flex-1">
+      {/* Left signature area */}
+      <div className="w-[55%] pt-[43mm] pr-[4mm]">
+        <div className="flex justify-center gap-[12mm]">
+          <div className="w-[58mm] text-center">
+            <div className="border-b border-black h-[1px] mb-[3mm]"></div>
+            <div className="text-[18px]">พนักงานชั่ง</div>
           </div>
 
-          {/* ฝั่งใบชั่งสำหรับพิมพ์ */}
-          <div className="w-full lg:w-1/2 flex justify-center print-area-wrapper">
-            <div className="bg-white shadow-lg print-area w-full max-w-[240mm] border-2 border-black flex flex-col text-black text-[18px] font-sarabun leading-snug">
-              
-              <div className="pt-6 px-6 pb-2">
-                <h1 className="text-center font-bold text-[26px] mb-1">
-                  บริษัท แอล.ที. การยาง จำกัด
-                </h1>
-
-                <p className="text-center text-[16px] mb-6">
-                  541 ม.3 จันดี ฉวาง นครศรีธรรมราช - 80250 โทร 075-445-930 เลขประจำตัวผู้เสียภาษี 0805523000071
-                </p>
-
-                <div className="grid grid-cols-12 gap-y-2 mb-4">
-                  {/* ใส่ข้อมูลหัวใบชั่งของคุณตรงนี้ */}
-                </div>
-              </div>
-
-              <table className="w-full border-t border-black border-collapse">
-                <tbody>
-                  <tr>
-                    <td colSpan="3" className="border-r border-black relative pb-6 px-10 align-bottom">
-                      <div className="flex justify-between items-end mt-24">
-                        <div className="w-40 text-center flex flex-col items-center">
-                          <div className="border-b border-black w-full mb-2"></div>
-                          <span className="font-normal text-[18px]">พนักงานชั่ง</span>
-                        </div>
-
-                        <div className="w-40 text-center flex flex-col items-center">
-                          <div className="border-b border-black w-full mb-2"></div>
-                          <span className="font-normal text-[18px]">พนักงานขับรถ</span>
-                        </div>
-                      </div>
-                    </td>
-
-                    <td className="border-r border-black p-3 align-top">
-                      {/* ใส่ข้อมูลช่องขวาตรงนี้ */}
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-
-            </div>
+          <div className="w-[58mm] text-center">
+            <div className="border-b border-black h-[1px] mb-[3mm]"></div>
+            <div className="text-[18px]">พนักงานขับรถ</div>
           </div>
         </div>
       </div>
-    </>
-  )
-}
 
-export default App
+      {/* Right summary box */}
+      <div className="w-[45%] border-l border-r border-b border-black min-h-[52mm]">
+        <div className="grid grid-cols-2 text-[18px] leading-[1.45] pt-[3mm] px-[2mm]">
+          <div className="text-right font-bold pr-[2mm]">นน. สุทธิ</div>
+          <div></div>
+
+          <div className="text-right pr-[2mm]">ความชื้น/สิ่งเจือปน</div>
+          <div className="text-right">0</div>
+
+          <div className="text-right font-bold pr-[2mm]">นน. คงเหลือ</div>
+          <div></div>
+
+          <div className="text-right pr-[2mm]">จำนวนเงิน</div>
+          <div className="text-right">0.00</div>
+
+          <div className="text-right pr-[2mm]">เงินหัก</div>
+          <div className="text-right">0.00</div>
+
+          <div className="text-right font-bold pr-[2mm]">เงินคงเหลือ</div>
+          <div className="text-right font-bold">0.00</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

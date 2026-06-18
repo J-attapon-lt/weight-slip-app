@@ -362,13 +362,23 @@ function App() {
                 <div className="value" style={{ left: '92pt', top: '182pt' }}>{form.plateIn}</div>
                 <div className="value" style={{ left: '260pt', top: '182pt' }}>{form.dateIn}</div>
                 <div className="value" style={{ left: '345pt', top: '182pt' }}>{form.timeIn}</div>
-                <div className="value" style={{ left: '515pt', top: '182pt' }}>{form.weightIn}</div>
+                <div className="value" style={{ left: '430pt', top: '182pt', width: '135pt',textAlign: 'right',}}>{form.weightIn}</div>
 
                 <div className="txt bold" style={{ left: '38pt', top: '204pt' }}>ออก</div>
                 <div className="value" style={{ left: '92pt', top: '204pt' }}>{form.plateOut}</div>
                 <div className="value" style={{ left: '260pt', top: '204pt' }}>{form.dateOut}</div>
                 <div className="value" style={{ left: '345pt', top: '204pt' }}>{form.timeOut}</div>
-                <div className="value" style={{ left: '515pt', top: '204pt' }}>{form.weightOut}</div>
+                <div
+  className="value"
+  style={{
+    left: '430pt',
+    top: '204pt',
+    width: '135pt',
+    textAlign: 'right',
+  }}
+>
+  {form.weightOut}
+</div>
 
                 <div className="line-h" style={{ left: '326pt', top: '358pt', width: '249pt' }} />
 

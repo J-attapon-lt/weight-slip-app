@@ -327,7 +327,7 @@ function App() {
                 <div className="value" style={{ left: '105pt', top: '89pt' }}>{form.customerName}</div>
 
                 <div className="txt bold" style={{ left: '361pt', top: '89pt' }}>พนักงานชั่ง</div>
-                <div className="value" style={{ left: '460pt', top: '89pt' }}>{form.staffName}</div>
+                <div className="value" style={{ left: '460pt', top: '85pt' }}>{form.staffName}</div>
 
                 <div className="txt bold" style={{ left: '20pt', top: '112pt' }}>สินค้า</div>
                 <div className="value" style={{ left: '105pt', top: '112pt' }}>{form.product}</div>

@@ -368,34 +368,12 @@ function App() {
                 <div className="value" style={{ left: '92pt', top: '204pt' }}>{form.plateOut}</div>
                 <div className="value" style={{ left: '260pt', top: '204pt' }}>{form.dateOut}</div>
                 <div className="value" style={{ left: '345pt', top: '204pt' }}>{form.timeOut}</div>
-                <div
-  className="value"
-  style={{
-    left: '430pt',
-    top: '204pt',
-    width: '135pt',
-    textAlign: 'right',
-  }}
->
-  {form.weightOut}
-</div>
+                <div className="value" style={{ left: '430pt', top: '204pt', width: '135pt',textAlign: 'right',  }}>{form.weightOut}</div>
 
                 <div className="line-h" style={{ left: '326pt', top: '358pt', width: '249pt' }} />
-<div className="value" style={{ left: '430pt', top: '182pt', width: '135pt',textAlign: 'right',}}>{form.weightIn}</div>
+
                 <div className="txt bold" style={{ left: '374pt', top: '228pt' }}>นน. สุทธิ</div>
-              
-<div
-  className="value bold"
-  style={{
-    left: '520pt',
-    top: '228pt',
-    width: '135pt',
-    textAlign: 'right',
-    fontWeight: 700,
-  }}
->
-  {form.netWeight}
-</div>
+              <div className="value bold" style={{left: '520pt', top: '228pt', width: '135pt', textAlign: 'right',fontWeight: 700,}}>{form.weightIn}</div>
                 <div className="txt" style={{ left: '329pt', top: '250pt' }}>ความชื้น/สิ่งเจือปน</div>
                 <div className="value" style={{ left: '563pt', top: '250pt' }}>{form.moisture}</div>
 

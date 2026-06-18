@@ -383,13 +383,36 @@ function App() {
                 <div className="line-h" style={{ left: '326pt', top: '358pt', width: '249pt' }} />
 <div className="value" style={{ left: '430pt', top: '182pt', width: '135pt',textAlign: 'right',}}>{form.weightIn}</div>
                 <div className="txt bold" style={{ left: '374pt', top: '228pt' }}>นน. สุทธิ</div>
-                <div className="value" style={{ left: '520pt', top: '228pt' }}>{form.netWeight}</div>
-
+              
+<div
+  className="value bold"
+  style={{
+    left: '520pt',
+    top: '228pt',
+    width: '135pt',
+    textAlign: 'right',
+    fontWeight: 700,
+  }}
+>
+  {form.netWeight}
+</div>
                 <div className="txt" style={{ left: '329pt', top: '250pt' }}>ความชื้น/สิ่งเจือปน</div>
                 <div className="value" style={{ left: '563pt', top: '250pt' }}>{form.moisture}</div>
 
                 <div className="txt bold" style={{ left: '357pt', top: '272pt' }}>นน. คงเหลือ</div>
                 <div className="value" style={{ left: '520pt', top: '272pt' }}>{form.remainWeight}</div>
+                <div
+  className="value bold"
+  style={{
+    left: '520pt',
+    top: '272pt',
+    width: '135pt',
+    textAlign: 'right',
+    fontWeight: 700,
+  }}
+>
+  {form.remainWeight}
+</div>
 
                 <div className="txt" style={{ left: '366pt', top: '294pt' }}>จำนวนเงิน</div>
                 <div className="value" style={{ left: '547pt', top: '294pt' }}>{form.amount}</div>

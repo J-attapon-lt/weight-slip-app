@@ -381,7 +381,7 @@ function App() {
 </div>
 
                 <div className="line-h" style={{ left: '326pt', top: '358pt', width: '249pt' }} />
-
+<div className="value" style={{ left: '430pt', top: '182pt', width: '135pt',textAlign: 'right',}}>{form.weightIn}</div>
                 <div className="txt bold" style={{ left: '374pt', top: '228pt' }}>นน. สุทธิ</div>
                 <div className="value" style={{ left: '520pt', top: '228pt' }}>{form.netWeight}</div>
 

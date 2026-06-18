@@ -320,20 +320,44 @@ function App() {
 
                 <div className="txt" style={{ left: '267pt', top: '67pt' }}>ใบชั่งน้ำหนัก</div>
 
-                <div className="txt bold" style={{ left: '361pt', top: '67pt' }}>วันที่</div>
-                <div className="value" style={{ left: '410pt', top: '67pt' }}>{form.weightDate}</div>
+<div className="txt bold" style={{ left: '361pt', top: '67pt' }}>วันที่</div>
+<div
+  className="value"
+  style={{
+    left: '430pt',
+    top: '67pt',
+  }}
+>
+  {form.weightDate}
+</div>
 
                 <div className="txt bold" style={{ left: '20pt', top: '89pt' }}>ชื่อลูกค้า</div>
                 <div className="value" style={{ left: '105pt', top: '89pt' }}>{form.customerName}</div>
+<div className="txt bold" style={{ left: '361pt', top: '89pt' }}>พนักงานชั่ง</div>
+<div
+  className="value"
+  style={{
+    left: '430pt',
+    top: '89pt',
+  }}
+>
+  {form.staffName}
+</div>
 
-                <div className="txt bold" style={{ left: '361pt', top: '89pt' }}>พนักงานชั่ง</div>
-                <div className="value" style={{left: '460pt', top: '86pt', }}>{form.staffName}</div>
 
                 <div className="txt bold" style={{ left: '20pt', top: '112pt' }}>สินค้า</div>
                 <div className="value" style={{ left: '105pt', top: '112pt' }}>{form.product}</div>
 
-                <div className="txt bold" style={{ left: '361pt', top: '112pt' }}>ราคา</div>
-                <div className="value" style={{ left: '426pt', top: '112pt' }}>{form.price} บาท</div>
+<div className="txt bold" style={{ left: '361pt', top: '112pt' }}>ราคา</div>
+<div
+  className="value"
+  style={{
+    left: '430pt',
+    top: '112pt',
+  }}
+>
+  {form.price} บาท
+</div>
 
                 <div className="txt bold" style={{ left: '20pt', top: '134pt' }}>ประเภทรถ</div>
                 <div className="value" style={{ left: '105pt', top: '134pt' }}>{form.carType}</div>
